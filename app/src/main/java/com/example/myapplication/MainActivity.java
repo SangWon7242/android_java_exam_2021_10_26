@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 String url = editTextUrl.getText().toString().trim();
 
                 // http:// 유무 판단
-               if (url.startsWith("http://") == false && url.startsWith("https://") == false) {
+                if (url.startsWith("http://") == false && url.startsWith("https://") == false) {
                     url = "http://" + url;
 
                     editTextUrl.setText(url);
@@ -65,5 +65,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void refreshButtonClicked(View view) {
+        webViewMain.reload();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (webViewMain.canGoBack()) {
+            webViewMain.goBack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
